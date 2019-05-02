@@ -33,7 +33,7 @@ data$V11 <- as.integer(as.logical(data$V11))
 data$V12 <- as.integer(as.logical(data$V12))
 
 
-Localizedwrapup <- c("Driver on Leave","Not Interested","No longer a Taxi Driver","Incorrect Number","Do Not Contact","Agreed to Increase Usage","Agreed to Register / Re - Activate",
+V16 <- c("Driver on Leave","Not Interested","No longer a Taxi Driver","Incorrect Number","Do Not Contact","Agreed to Increase Usage","Agreed to Register / Re - Activate",
                      "No Answer","DMC Scheduled Callback","Non DMC Scheduled Callback","Agent Skip","Wrong Party","NS","Customer Disconnected","DMC Manual Callback","Registered / Reactivated",
                      "Happy with mytaxi - No Customers in Area","Non - Dialer Call","Issue with T & Cs","Non DMC Manual Callback","Reactivated","Registered","Customer Query",
                      "Passenger Issue","Passenger Query","Payment Issue","App Issue","General Information","Currently Using MyTaxi App","Topaz Query","Acquisition - New","Acquisition - 3 T",
@@ -45,3 +45,8 @@ Sale <- c(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0
 
 
 dmcsaltable <- data.frame(Localizedwrapup, Contact, DMC, Sale)
+
+require(sqldf)
+
+data <- sqldf("select * from data join dmcsaltable on V16 = Localizedwrapup")
+
